@@ -12,9 +12,9 @@ if not getgenv().Visibility then
 end
 
 if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
-    getgenv().cham = false
-    getgenv().nameESP = false
-    getgenv().boxESP = false
+    getgenv().cham = true
+    getgenv().nameESP = true
+    getgenv().boxESP = true
 end
 
 
@@ -40,11 +40,11 @@ end
 local function DrawESP(plr)
     local Name = Drawing.new("Text")
     Name.Center = true
-    Name.Visible = false
+    Name.Visible = true
     Name.Outline = true
     Name.Transparency = 1
     local Box = Drawing.new("Quad")
-    Box.Visible = false
+    Box.Visible = true
     Box.PointA = Vector2.new(0, 0)
     Box.PointB = Vector2.new(0, 0)
     Box.PointC = Vector2.new(0, 0)
