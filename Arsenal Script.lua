@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
-Library:SetWatermark("Op Script")
+Library:SetWatermark("Arsenal Script")
 
 local Camera = workspace.CurrentCamera
 local Players = game:GetService("Players")
@@ -9,7 +9,7 @@ local TweenService = game:GetService("TweenService")
 local LocalPlayer = Players.LocalPlayer
 local Holding = false
 
-_G.AimbotEnabled = false
+_G.AimbotEnabled = false -- if you want aimbot set false to true
 _G.TeamCheck = true -- If set to true then the script would only lock your aim at enemy team members.
 _G.AimPart = "Head" -- Where the aimbot script would lock at.
 _G.Sensitivity = 0 -- How many seconds it takes for the aimbot script to officially lock onto the target's aimpart.
@@ -46,7 +46,7 @@ local function GetClosestPlayer()
 							if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
 								local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
 								local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
-								
+
 								if VectorDistance < MaximumDistance then
 									Target = v
 								end
@@ -60,7 +60,7 @@ local function GetClosestPlayer()
 						if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
 							local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
 							local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
-							
+
 							if VectorDistance < MaximumDistance then
 								Target = v
 							end
@@ -103,7 +103,7 @@ RunService.RenderStepped:Connect(function()
 end)
 
 local replicationstorage = game.ReplicatedStorage
- 
+
 
 
 
@@ -127,7 +127,33 @@ for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
        v.Value = 20
    end
 end
- 
+
+
+function getplrsname() for i,v in pairs(game:GetChildren()) do if v.ClassName == "Players" then return v.Name end end end local players = getplrsname() local plr = game[players].LocalPlayer coroutine.resume(coroutine.create(function() while wait(1) do coroutine.resume(coroutine.create(function() for _,v in pairs(game[players]:GetPlayers()) do if v.Name ~= plr.Name and v.Character then v.Character.RightUpperLeg.CanCollide = false v.Character.RightUpperLeg.Transparency = 75 v.Character.RightUpperLeg.Size = Vector3.new(21,21,21) v.Character.LeftUpperLeg.CanCollide = false v.Character.LeftUpperLeg.Transparency = 75 v.Character.LeftUpperLeg.Size = Vector3.new(21,21,21) v.Character.HeadHB.CanCollide = false v.Character.HeadHB.Transparency = 75 v.Character.HeadHB.Size = Vector3.new(21,21,21) v.Character.HumanoidRootPart.CanCollide = false v.Character.HumanoidRootPart.Transparency = 75 v.Character.HumanoidRootPart.Size = Vector3.new(21,21,21) end end end)) end end))
+
+--Made by Andrheyplayz_officalyt
+local gui = Instance.new("BillboardGui");
+gui.Name = "";
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+local frame = Instance.new("Frame", gui);
+frame.BackgroundColor3 = Color3.fromRGB(170, 0, 0);
+frame.Size = UDim2.new(1, 0, 1, 0);
+frame.BorderSizePixel = 4;
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0);
+local gi = gui:Clone();
+local body = frame:Clone();
+body.Parent = gi;
+body.BackgroundColor3 = Color3.fromRGB(0, 170, 170);
+
+for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game:GetService("Players").LocalPlayer.Name and v.Character and v.Character:FindFirstChild("Head") then
+        gui:Clone().Parent = v.Character.Head;
+    end
+end
+
+local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
 net = true -- if false = do nothing
 notify = false -- set this to false if u don't want to see notiflication 
 
